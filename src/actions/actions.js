@@ -1,4 +1,12 @@
-import {ADD_DISH_TO_CHECK, DELETE_DISH_FROM_CHECK, INIT_CHECK, MENU_ERROR, MENU_REQUEST, MENU_RESPONSE} from "./consts";
+import {
+    ADD_DISH_TO_CHECK,
+    DELETE_DISH_FROM_CHECK,
+    INIT_CHECK,
+    MENU_ERROR,
+    MENU_REQUEST,
+    MENU_RESPONSE,
+    RESET_CHECK
+} from "./consts";
 import axios from "axios";
 
 export const menuRequest = () => ({type: MENU_REQUEST});
@@ -18,10 +26,12 @@ export const getMenu = () => async dispatch => {
     }
 };
 
-export const sendOrder = async data => {
-    await axios.post('https://lesson-69-ramazan.firebaseio.com/orders.json', data);
-};
-
 export const addDishToCheck = name => ({type: ADD_DISH_TO_CHECK, name});
 
 export const deleteDishFromCheck = name => ({type: DELETE_DISH_FROM_CHECK, name});
+
+export const resetCheck = () => ({type: RESET_CHECK});
+
+export const sendOrder = async data => {
+    await axios.post('https://lesson-69-ramazan.firebaseio.com/orders.json', data);
+};

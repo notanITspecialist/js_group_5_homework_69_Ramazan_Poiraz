@@ -1,4 +1,4 @@
-import {ADD_DISH_TO_CHECK, DELETE_DISH_FROM_CHECK, INIT_CHECK} from "../actions/consts";
+import {ADD_DISH_TO_CHECK, DELETE_DISH_FROM_CHECK, INIT_CHECK, RESET_CHECK} from "../actions/consts";
 
 const prices = {};
 
@@ -20,33 +20,33 @@ const checkReducer = ( state = initialState, action ) => {
     }
 
     if(action.type === ADD_DISH_TO_CHECK){
+        const newState = state.check;
         const index = state.check.findIndex(elem => elem.name === action.name);
-        if(state.check[index].quantity !== 0){
-            return {...state, check: [
-                    ...state.check,
-                    state.check[index].quantity = state.check[index].quantity + 1,
-                    state.check[index].price = state.check[index].price + prices[action.name]
-                ],totalPrice: state.totalPrice + prices[action.name]}
+        if( state.check[index].quantity !== 0 ){
+            newState[index].quantity = newState[index].quantity + 1;
+            newState[index].price = newState[index].price + prices[action.name]
+        } else {
+            newState[index].quantity = newState[index].quantity + 1;
         }
-        return {...state, check: [
-            ...state.check,
-                state.check[index].quantity = state.check[index].quantity + 1
-            ],totalPrice: state.totalPrice + prices[action.name]}
-    }
+        return {...state, check: newState, totalPrice: state.totalPrice + prices[action.name]}
+    };
 
     if(action.type === DELETE_DISH_FROM_CHECK){
+        const newState = state.check;
         const index = state.check.findIndex(elem => elem.name === action.name);
-        if(state.check[index].quantity > 1){
-            return {...state, check: [
-                    ...state.check,
-                    state.check[index].quantity = state.check[index].quantity - 1,
-                    state.check[index].price = state.check[index].price - prices[action.name]
-                ],totalPrice: state.totalPrice - prices[action.name]}
+        if( state.check[index].quantity > 1 ){
+            newState[index].quantity = newState[index].quantity - 1;
+            newState[index].price = newState[index].price - prices[action.name]
+        } else {
+            newState[index].quantity = newState[index].quantity - 1;
         }
-        return {...state, check: [
-                ...state.check,
-                state.check[index].quantity = state.check[index].quantity - 1
-            ],totalPrice: state.totalPrice - prices[action.name]}
+        return {...state, check: newState, totalPrice: state.totalPrice - prices[action.name]}
+    }
+
+    if(action.type === RESET_CHECK){
+        console.log('RESET')
+        const resetCheck = state.check.map((elem, id) => ({name: elem.name ,price: prices[elem.name],  quantity: 0}));
+        return {...state, check: resetCheck, totalPrice: 150 }
     }
     return state
 };

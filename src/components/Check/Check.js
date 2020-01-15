@@ -4,7 +4,7 @@ import ListGroup from "reactstrap/es/ListGroup";
 import ListGroupItem from "reactstrap/es/ListGroupItem";
 
 import './Check.css'
-import {deleteDishFromCheck, sendOrder} from "../../actions/actions";
+import {deleteDishFromCheck, resetCheck, sendOrder} from "../../actions/actions";
 import ModalForm from "../ModalForm/ModalForm";
 
 class Check extends Component {
@@ -47,6 +47,7 @@ class Check extends Component {
           check: checkInfo
       };
       await this.props.sendOrder(sendInfo);
+        this.props.resetCheck();
         this.setState({
             showModal: false,
             address: '',
@@ -98,7 +99,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     deleteDishFromCheck: name => dispatch(deleteDishFromCheck(name)),
-    sendOrder: data => sendOrder(data)
+    sendOrder: data => sendOrder(data),
+    resetCheck: () => dispatch(resetCheck())
 });
 
 export default connect(mapStateToProps,mapDispatchToProps)(Check);
