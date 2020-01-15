@@ -44,7 +44,6 @@ const checkReducer = ( state = initialState, action ) => {
     }
 
     if(action.type === RESET_CHECK){
-        console.log('RESET')
         const resetCheck = state.check.map((elem, id) => ({name: elem.name ,price: prices[elem.name],  quantity: 0}));
         return {...state, check: resetCheck, totalPrice: 150 }
     }
