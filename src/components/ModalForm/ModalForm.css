@@ -1,0 +1,40 @@
+.Modal {
+    position: fixed;
+    z-index: 500;
+    background-color: white;
+    width: 70%;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px black;
+    padding: 16px;
+    left: 15%;
+    top: 30%;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+.ModaTitle {
+    display: block;
+    padding-bottom: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.ModalButton {
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 5px;
+    margin: 0 2px;
+}
+
+.ModalButtonClose {
+    float: right;
+}
+
+@media (min-width: 600px) {
+    .Modal {
+        width: 500px;
+        left: calc(50% - 250px);
+    }
+}

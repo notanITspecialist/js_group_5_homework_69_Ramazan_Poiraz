@@ -1,0 +1,22 @@
+.check-elem {
+    text-align: left;
+}
+
+.check-elem-name {
+    font-size: 25px;
+}
+
+.check-elem-quantity {
+    margin-left: 15px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.check-elem-price {
+    margin-left: 40px;
+}
+
+.modalFormCheck {
+    display: block;
+    margin: 4px 0;
+}

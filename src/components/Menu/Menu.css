@@ -1,0 +1,20 @@
+.menu-elem {
+    padding-left: 20px;
+}
+
+.menu-img {
+    float: left;
+    width: 90px;
+    height: 70px;
+    margin-right: 20px;
+    border-radius: 3px;
+}
+
+.menu-elem-name {
+    font-size: 30px;
+}
+
+.menu-elem-price {
+    font-size: 20px;
+    display: block;
+}
